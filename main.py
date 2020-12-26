@@ -41,12 +41,18 @@ def get_detail_data(soup):
   except:
     totalSold = ''
 
+  try: 
+    productImage = soup.find('img', id='icImg')
+  except:
+    productImage = ''
+
   data = {
     'title': title,
     'price': price,
     'currency': currency,
     'quantity': quantity,
-    'total_sold': totalSold
+    'total_sold': totalSold,
+    'image': productImage['src']
   }
 
   return data
@@ -67,7 +73,7 @@ def write_csv(data, url):
     with open('output.csv', 'a') as csvfile:
       writer = csv.writer(csvfile)
 
-      row = [data['title'], data['price'], data['currency'], data['quantity'], data['total_sold'], url]
+      row = [data['title'], data['price'], data['currency'], data['quantity'], data['total_sold'], data['image'], url]
 
       writer.writerow(row)
 
