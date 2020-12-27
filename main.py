@@ -2,9 +2,10 @@
 # - ALEXANDRE MAGNIER
 
 import csv
-
+import urllib
 import requests
 from bs4 import BeautifulSoup
+import urllib.request 
 
 def get_page(url):
     response = requests.get(url)
@@ -78,6 +79,16 @@ def write_csv(data, url):
       writer.writerow(row)
 
 
+def upload_image(data):
+
+    response = requests.get(data["image"])
+
+
+    file = open(data["title"] + ".jpeg", "wb")
+    file.write(response.content)
+    file.close()
+    
+
 def main():
     url = 'https://www.ebay.fr/sch/i.html?_from=R40&_trksid=p2380057.m570.l1313&_nkw=pi%C3%A8ces+auto&_sacat=0'
 
@@ -85,7 +96,8 @@ def main():
 
     for link in products:
         data = get_detail_data(get_page(link))
-        write_csv(data, link)
+        upload_image(data)
+        write_csv(data,url)
     
 
 
