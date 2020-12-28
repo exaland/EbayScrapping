@@ -6,6 +6,7 @@ import urllib
 import requests
 from bs4 import BeautifulSoup
 import urllib.request 
+import os.path
 
 def get_page(url):
     response = requests.get(url)
@@ -33,6 +34,12 @@ def get_detail_data(soup):
     price = ''
 
   try:
+        eBay_item_number = soup.find('div',
+                id='descItemNumber').text.strip()
+  except:
+        eBay_item_number = ""
+
+  try:
     quantity = soup.find('span', id='qtySubTxt').text
   except:
     quantity = ''
@@ -48,6 +55,7 @@ def get_detail_data(soup):
     productImage = ''
 
   data = {
+    'itemnumber': eBay_item_number,
     'title': title,
     'price': price,
     'currency': currency,
@@ -74,7 +82,7 @@ def write_csv(data, url):
     with open('output.csv', 'a') as csvfile:
       writer = csv.writer(csvfile)
 
-      row = [data['title'], data['price'], data['currency'], data['quantity'], data['total_sold'], data['image'], url]
+      row = data['itemnumber'], [data['title'], data['price'], data['currency'], data['quantity'], data['total_sold'], data['image'], url]
 
       writer.writerow(row)
 
@@ -83,8 +91,9 @@ def upload_image(data):
 
     response = requests.get(data["image"])
 
+    completeName = os.path.join("img/", data["itemnumber"] + ".jpeg")
 
-    file = open(data["title"] + ".jpeg", "wb")
+    file = open(completeName, "wb")
     file.write(response.content)
     file.close()
     
