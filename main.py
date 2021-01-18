@@ -20,14 +20,14 @@ def get_page(url):
 
 
 
-def write_csv(data, url):
+def write_csv(data):
     with open('output.csv', 'a') as csvfile:
       writer = csv.writer(csvfile)
 
     
       print("data ss: ",data)
       for d in data:
-        row = [d['title'], url]
+        row = [d['title']]
 
         writer.writerow(row)
 
@@ -47,7 +47,7 @@ def main():
     url = 'http://newsapi.org/v2/everything?q=football&from=2020-12-18&language=fr&sortBy=publishedAt&apiKey=aa4f9116bd904d7e99c9a24bb49a42a2'
 
     products = get_page(url)
-    write_csv(products,"http://newsapi.org/v2/everything?q=football&from=2020-12-18&language=fr&sortBy=publishedAt&apiKey=aa4f9116bd904d7e99c9a24bb49a42a2")
+    write_csv(products)
   
     
 
