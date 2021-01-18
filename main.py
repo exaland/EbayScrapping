@@ -25,11 +25,10 @@ def write_csv(data):
       writer = csv.writer(csvfile)
 
     
-      print("data ss: ",data)
-      for d in data:
-        row = [d['title'],d['description'],d['url'],d['urlToImage'],d['content']]
+      
+      row = [data['title'],data['description'],data['url'],data['urlToImage'],data['content']]
 
-        writer.writerow(row)
+      writer.writerow(row)
 
 
 def upload_image(data):
@@ -46,8 +45,10 @@ def upload_image(data):
 def main():
     url = 'http://newsapi.org/v2/everything?q=football&from=2020-12-18&language=fr&sortBy=publishedAt&apiKey=aa4f9116bd904d7e99c9a24bb49a42a2'
 
-    products = get_page(url)
-    write_csv(products)
+    articles = get_page(url)
+    print("articles :  ",articles)
+    for d in articles:
+     write_csv(d)
   
     
 
