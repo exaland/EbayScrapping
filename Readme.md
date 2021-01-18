@@ -6,5 +6,5 @@
 
 `Scrapping newsapi.org with Download Image`
 
-- [-] Save Result in Output CSV
-- [-] Add Image Downloading...
+- [X] Save Result in Output CSV
+- [X] Add Image Downloading...
