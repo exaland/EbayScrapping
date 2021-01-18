@@ -1,9 +1,10 @@
-# Ebay Scrapping Python
+# Newsapi.ORG Scrapping Python
 
 
 ## Exaland Concept 
 
 
-`Scrapping Ebay with Download Image`
+`Scrapping newsapi.org with Download Image`
 
-- [x] Add Image Downloading...
+- [-] Save Result in Output CSV
+- [-] Add Image Downloading...
