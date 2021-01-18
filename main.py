@@ -27,7 +27,7 @@ def write_csv(data):
     
       print("data ss: ",data)
       for d in data:
-        row = [d['title'],d['description']]
+        row = [d['title'],d['description'],d['url'],d['urlToImage'],d['content']]
 
         writer.writerow(row)
 
